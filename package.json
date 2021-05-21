@@ -1,0 +1,19 @@
+{
+  "name": "productcategorycrud",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pro-Major/NimapCRUDproject.git"
+  },
+  "author": "BIPIN NAVIK",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pro-Major/NimapCRUDproject/issues"
+  },
+  "homepage": "https://github.com/pro-Major/NimapCRUDproject#readme"
+}
