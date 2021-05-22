@@ -7,12 +7,12 @@ app.use(express.json());
 
 // Import all routes
 const products = require('./routes/products');
-// const Category = require('./routes/category');
+const category = require('./routes/category');
 // const productsAndCategory = require('./routes/productsAndCategory');
 
 // app.use('/', productsAndCategory)
 app.use('/',products)
-// app.use('category',Category)
+app.use('/',category)
 
 
 

@@ -1,13 +1,22 @@
 const Product = require('../models/products');
+const Category = require('../models/Category');
 
 
 // Create new product 
 exports.createProduct = async (req,res,next) => { 
-    const product = await Product.create(req.body);
+    const category = await Category.findById(req.body.categoryID);
+    
+    req.body.CategoryName = category.CategoryName
+    req.body.CategoryId = category.id
+
+
+    const product = await Product.create(req.body)
+
 
     res.status(201).json({
         success: true,
-        product
+        product,
+        category
     });
 }
 
