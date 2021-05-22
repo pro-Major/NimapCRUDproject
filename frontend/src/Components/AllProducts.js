@@ -1,28 +1,36 @@
 import React,{Fragment,useEffect} from 'react'
 import { getProducts , deleteProduct } from '../Actions/productsActions'
 import { useDispatch , useSelector } from 'react-redux'
-import { MDBDataTable } from 'mdbreact'
 import { Link } from 'react-router-dom'
-
-
+import {DELETE_PRODUCT_RESET} from '../Constants/productsConstant'
+import { useAlert } from 'react-alert'
 
 const AllProducts = () => {
     const dispatch = useDispatch(); 
-    const { products } = useSelector(state => state.products);
+    const alert = useAlert();
 
+    const { products } = useSelector(state => state.products);
+    const { isDeleted } = useSelector(state => state.product);
 
     useEffect(() => {
+        dispatch(getProducts());     
 
-        dispatch(getProducts());
-    },[])
+        if (isDeleted) {
+            alert.success('Product deleted successfully');
+            dispatch({ type: DELETE_PRODUCT_RESET })
+        }
+    },[isDeleted,alert])
 
 const deleteProductHandler = (id) => {
     dispatch(deleteProduct(id));
     }
     return(
         <Fragment>
+<h1 >All Products </h1>
 
-<h1>All Products</h1>
+
+<Link to={`/products/create`} className="btn btn-primary" style={{"margin-left": "51rem"}}> Create Product</Link>
+<Link to={`/category/`} className="btn btn-warning"> Create Category</Link>
 <table class="table">
   <thead>
     <tr>
@@ -45,7 +53,7 @@ const deleteProductHandler = (id) => {
         <td>{product.CategoryId}</td>
         <td> 
         <Fragment>
-                    <Link to={`/admin/product/${product._id}`} className="btn btn-primary py-1 px-2">
+                    <Link to={`/product/${product._id}`} className="btn btn-primary py-1 px-2">
                         <i className="fa fa-pencil"></i>
                     </Link>
                     <button className="btn btn-danger py-1 px-2 ml-2" onClick={() => deleteProductHandler(product._id)}>

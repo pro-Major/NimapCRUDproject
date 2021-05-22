@@ -1,11 +1,13 @@
 import thunk from 'redux-thunk';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension'
-import { productsReducer } from './Reducers/productReducer'
+import { deleteProductReducer, productsReducer , } from './Reducers/productReducer'
 
 
 const reducer = combineReducers({
     products: productsReducer,
+    product: deleteProductReducer,
+
 
 })
 
