@@ -6,7 +6,11 @@ import {
     DELETE_CATEGORY_SUCCESS,
     DELETE_CATEGORY_FAIL,
     DELETE_CATEGORY_RESET,
-    CLEAR_ERRORS
+    CLEAR_ERRORS,
+    CREATE_CATEGORY_REQUEST,
+    CREATE_CATEGORY_SUCCESS,
+    CREATE_CATEGORY_FAIL,
+    CREATE_CATEGORY_RESET
 } from '../Constants/categoryConstant'
 
 
@@ -40,6 +44,49 @@ export const CategoryReducer = (state = { category: [] }, action) => {
             return state;
     }
 }
+
+//Create Category Reducers
+export const createCategoryReducer = (state = {}, action) => {
+    switch (action.type) {
+
+        case CREATE_CATEGORY_REQUEST:
+            return {
+                ...state,
+                loading: true
+            }
+
+        case CREATE_CATEGORY_SUCCESS:
+            return {
+                loading: false,
+                success: action.payload.success,
+                categoryData: action.payload.category
+            }
+
+        case CREATE_CATEGORY_FAIL:
+            return {
+                ...state,
+                error: action.payload
+            }
+
+        case CREATE_CATEGORY_RESET:
+            return {
+                ...state,
+                success: false
+            }
+
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null
+            }
+
+        default:
+            return state
+    }
+}
+
+
+//Delete Category Reducer
 export const deleteCategoryReducer = (state = {},action) => {
     switch(action.type){
         case DELETE_CATEGORY_REQUEST:

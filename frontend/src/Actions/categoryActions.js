@@ -6,10 +6,14 @@ import {
     ALL_CATEGORY_FAIL,
     DELETE_CATEGORY_REQUEST,
     DELETE_CATEGORY_SUCCESS,
-    DELETE_CATEGORY_FAIL
+    DELETE_CATEGORY_FAIL,
+    CREATE_CATEGORY_REQUEST,
+    CREATE_CATEGORY_SUCCESS,
+    CREATE_CATEGORY_FAIL
+
 } from '../Constants/categoryConstant'
 
-
+//Get ALl Category
 export const getCategory = () => async (dispatch) => {
     try {
 
@@ -28,8 +32,24 @@ export const getCategory = () => async (dispatch) => {
         })
     }
 }
+//Create a Category
+export const createCategory = (CategoryName) => async (dispatch) => {
+    try{
+        dispatch({type : CREATE_CATEGORY_REQUEST})
 
+        const {data} = await axios.post(`/category/`,{CategoryName})
 
+        dispatch({
+            type : CREATE_CATEGORY_SUCCESS,
+            payload : data,
+        })
+    }
+    catch (error) {
+        dispatch({type : CREATE_CATEGORY_FAIL })
+    }
+}
+
+//Delete A Category
 export const deleteCategory = (id) =>  async (dispatch) => {
     try{
         dispatch({ type : DELETE_CATEGORY_REQUEST})

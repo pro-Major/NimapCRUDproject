@@ -3,13 +3,29 @@ const Category = require('../models/Category');
 
 //Create a new Category
 exports.createCategory = async (req, res, next) => {
-
-    const category = await Category.create(req.body)
+    try{
+        const category = await Category.create(req.body)
 
     res.status(201).json({
         success: true,
         category
     });
+        
+    }
+    catch(err){
+      if(err.name == 'ValidationError') {
+          res.status(400).json({
+                success: false,
+                message: 'Category Already Exists'
+          })
+      }
+      else{
+          res.status(401).json({
+              success: false,
+              message: err.message
+          })
+      }
+    }    
 }
 //Get All Category
 exports.getCategory = async (req, res, next) => {
