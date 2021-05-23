@@ -12,13 +12,19 @@ exports.createCategory = async (req, res, next) => {
     });
         
     }
-    catch(err){
-      if(err.name == 'ValidationError') {
+    catch(error){
+      if(error.name == 'ValidationError') {
           res.status(400).json({
                 success: false,
                 message: 'Category Already Exists'
           })
       }
+      if(error.name == 'CastError') {
+        res.status(400).json({
+              success: false,
+              message: 'Category Already Exists'
+        })
+    }
       else{
           res.status(401).json({
               success: false,

@@ -71,7 +71,7 @@ export const createCategoryReducer = (state = {}, action) => {
         case CREATE_CATEGORY_RESET:
             return {
                 ...state,
-                success: false
+                categoryData: null
             }
 
         case CLEAR_ERRORS:

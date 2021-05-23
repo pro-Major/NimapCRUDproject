@@ -1,21 +1,28 @@
 import React,{useState,Button,useEffect} from 'react'
 import {useDispatch,useSelector} from 'react-redux'
 import { useAlert } from 'react-alert'
-import {createCategory} from '../Actions/categoryActions'
+import {createCategory , clearErrors} from '../Actions/categoryActions'
+import { CREATE_CATEGORY_RESET} from '../Constants/categoryConstant'
 const CreateCategory = ({history}) => {
     const [name, setName] = useState('') 
 
     const dispatch = useDispatch();
     const alert = useAlert();
-    const {categoryData }  = useSelector(state => state.createCategory)
+    const {categoryData , error }  = useSelector(state => state.createCategory)
 useEffect(() => {
     if(categoryData) {
         alert.success("Category Added Successfully ");
         history.push('/category')
+        dispatch({ type: CREATE_CATEGORY_RESET })
     }
-    
+    if(error) {
+        alert.error(error);
+        history.push('/category')
+        dispatch(clearErrors());
+    }
+ 
 
-},[categoryData])
+},[categoryData,error])
 
 
 const submitHandler = (e) => {

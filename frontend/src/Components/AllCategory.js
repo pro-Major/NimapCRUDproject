@@ -21,7 +21,7 @@ useEffect(() => {
         alert.success('Category deleted successfully');
         dispatch({ type: DELETE_CATEGORY_RESET })
     }
-},[isDeleted,alert]);
+},[isDeleted]);
 
 const deleteCategoryHandler = (id) => {
     dispatch(deleteCategory(id));
@@ -30,8 +30,15 @@ const deleteCategoryHandler = (id) => {
 
     return(
         <Fragment>
-<h1 >All Category </h1>
-<Link to={`/category/create`} className="btn btn-primary"  style={{marginInlineStart: 900}}>Create Category</Link>
+  <div className="row">
+    <div className="col">
+        <h1 >All Category </h1>
+        </div>
+        <div className="col my-2 margin-left" style={{marginInlineStart: 450}}>
+         <Link to={`/`} className="btn btn-success"  >Homepage</Link>
+        <Link to={`/category/create`} className="btn btn-warning ml-2">Create Category</Link>
+</div>
+</div>
 <table class="table">
   <thead>
     <tr>

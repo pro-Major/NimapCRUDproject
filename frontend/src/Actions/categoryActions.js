@@ -9,7 +9,8 @@ import {
     DELETE_CATEGORY_FAIL,
     CREATE_CATEGORY_REQUEST,
     CREATE_CATEGORY_SUCCESS,
-    CREATE_CATEGORY_FAIL
+    CREATE_CATEGORY_FAIL,
+    CLEAR_ERRORS
 
 } from '../Constants/categoryConstant'
 
@@ -45,7 +46,12 @@ export const createCategory = (CategoryName) => async (dispatch) => {
         })
     }
     catch (error) {
-        dispatch({type : CREATE_CATEGORY_FAIL })
+
+        dispatch({
+            type : CREATE_CATEGORY_FAIL,
+            payload : error.response.data.message
+        })
+        
     }
 }
 
@@ -67,4 +73,12 @@ export const deleteCategory = (id) =>  async (dispatch) => {
             type : DELETE_CATEGORY_FAIL
         })
     }
+}
+
+
+// Clear Errors
+export const clearErrors = () => async (dispatch) => {
+    dispatch({
+        type: CLEAR_ERRORS
+    })
 }
