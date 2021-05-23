@@ -10,7 +10,7 @@ const AllProducts = () => {
     const alert = useAlert();
 
     const { products } = useSelector(state => state.products);
-    const { isDeleted } = useSelector(state => state.product);
+    const { isDeleted } = useSelector(state => state.productDeleted);
 
     useEffect(() => {
         dispatch(getProducts());     
@@ -32,8 +32,8 @@ const deleteProductHandler = (id) => {
            
             </div>
             <div className="col my-2 margin-left" style={{marginInlineStart: 450}}>
-            <Link to={`/products/create`} className="btn btn-primary" > Create Product</Link>
-            <Link to={`/category/`} className="btn btn-warning ml-2" > Create Category</Link>
+            <Link to={`/products/create`} className="btn btn-primary" >Product Action</Link>
+            <Link to={`/category/`} className="btn btn-warning ml-2" >Category Action</Link>
             </div>
             
             

@@ -2,6 +2,10 @@ import {
     ALL_CATEGORY_REQUEST,
     ALL_CATEGORY_SUCCESS,
     ALL_CATEGORY_FAIL,
+    DELETE_CATEGORY_REQUEST,
+    DELETE_CATEGORY_SUCCESS,
+    DELETE_CATEGORY_FAIL,
+    DELETE_CATEGORY_RESET,
     CLEAR_ERRORS
 } from '../Constants/categoryConstant'
 
@@ -36,37 +40,37 @@ export const CategoryReducer = (state = { category: [] }, action) => {
             return state;
     }
 }
-// // export const deletePcategoryReducer = (state = {},action) => {
-// //     switch(action.type){
-// //         case DELETE_CATEGORY_REQUEST:
-// //             return{
-// //                 ...state,
-// //                 loading: true
-// //             }
-// //         case DELETE_CATEGORY_SUCCESS:
-// //             return{
-// //                 ...state,
-// //                 loading: false,
-// //                 isDeleted: action.payload
-// //             }
-// //         case DELETE_CATEGORY_FAIL:
-// //             return {
-// //                 ...state,
-// //                 error: action.payload
-// //             }
-// //         case DELETE_CATEGORY_RESET:
-// //                 return {
-// //                     ...state,
-// //                     isDeleted: false
-// //             }
-// //         case CLEAR_ERRORS:
-// //                 return {
-// //                     ...state,
-// //                     error: null
-// //              }
-// //         default:
-// //             return state
+export const deleteCategoryReducer = (state = {},action) => {
+    switch(action.type){
+        case DELETE_CATEGORY_REQUEST:
+            return{
+                ...state,
+                loading: true
+            }
+        case DELETE_CATEGORY_SUCCESS:
+            return{
+                ...state,
+                loading: false,
+                isDeleted: true
+            }
+        case DELETE_CATEGORY_FAIL:
+            return {
+                ...state,
+                error: action.payload
+            }
+        case DELETE_CATEGORY_RESET:
+                return {
+                    ...state,
+                    isDeleted: false
+            }
+        case CLEAR_ERRORS:
+                return {
+                    ...state,
+                    error: null
+             }
+        default:
+            return state
         
         
-// //     }
-// }
+    }
+}

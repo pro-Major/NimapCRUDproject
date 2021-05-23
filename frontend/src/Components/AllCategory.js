@@ -1,18 +1,30 @@
 import React,{Fragment,useEffect}from 'react'
 import { Link} from "react-router-dom"
-import {getCategory} from "../Actions/categoryActions"
+import {getCategory , deleteCategory } from "../Actions/categoryActions"
 import { useDispatch , useSelector } from 'react-redux'
-
+import { useAlert } from 'react-alert'
+import {DELETE_CATEGORY_RESET} from '../Constants/categoryConstant'
 const AllCategory = () => {
     const dispatch = useDispatch();
+    const alert = useAlert();
+
     const {category} = useSelector(state => state.category)
+    const { isDeleted } = useSelector(state => state.categoryDeleted);
+
 
 
 useEffect(() => {   
     dispatch(getCategory());
-},[]);
 
-const deleteProductHandler = () => {
+    
+    if (isDeleted) {
+        alert.success('Category deleted successfully');
+        dispatch({ type: DELETE_CATEGORY_RESET })
+    }
+},[isDeleted,alert]);
+
+const deleteCategoryHandler = (id) => {
+    dispatch(deleteCategory(id));
 
 }
 
@@ -42,10 +54,10 @@ const deleteProductHandler = () => {
          
         <td>  
         <Fragment>
-                    <Link to={`/product/${item._id}`} className="btn btn-primary py-1 px-2">
+                    <Link to={`/category/${item._id}`} className="btn btn-primary py-1 px-2">
                         <i className="fa fa-pencil"></i>
                     </Link>
-                    <button className="btn btn-danger py-1 px-2 ml-2" onClick={() => deleteProductHandler(item._id)}>
+                    <button className="btn btn-danger py-1 px-2 ml-2" onClick={() => deleteCategoryHandler(item._id)}>
                         <i className="fa fa-trash"></i>
                     </button>
                 </Fragment>
