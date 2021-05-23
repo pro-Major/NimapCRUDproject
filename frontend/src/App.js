@@ -4,7 +4,7 @@ import {BrowserRouter as Router , Route}from 'react-router-dom';
 //Importing Components
 import AllProducts from './Components/AllProducts'
 import UpdateProduct from './Components/UpdateProduct'
-
+import AllCategory from './Components/AllCategory'
 function App() {
       return (
     <Router>
@@ -12,8 +12,8 @@ function App() {
 
       <Route path="/" component={AllProducts} exact />
       <Route path="/product/:id" component={UpdateProduct} exact />
-
-
+      <Route path="/category/" component={AllCategory} exact />
+      
 
         </div>
     </Router> 

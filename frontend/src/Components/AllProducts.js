@@ -26,11 +26,18 @@ const deleteProductHandler = (id) => {
     }
     return(
         <Fragment>
-<h1 >All Products </h1>
+            <div className="row">
+            <div className="col">
+            <h1 >All Products </h1>
+           
+            </div>
+            <div className="col my-2 margin-left" style={{marginInlineStart: 450}}>
+            <Link to={`/products/create`} className="btn btn-primary" > Create Product</Link>
+            <Link to={`/category/`} className="btn btn-warning ml-2" > Create Category</Link>
+            </div>
+            
+            
 
-
-<Link to={`/products/create`} className="btn btn-primary" style={{"margin-left": "51rem"}}> Create Product</Link>
-<Link to={`/category/`} className="btn btn-warning"> Create Category</Link>
 <table class="table">
   <thead>
     <tr>
@@ -71,6 +78,7 @@ const deleteProductHandler = (id) => {
 
   
 </table>
+</div>
 
         </Fragment>
     )
