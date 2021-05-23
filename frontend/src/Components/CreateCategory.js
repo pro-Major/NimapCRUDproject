@@ -1,4 +1,4 @@
-import React,{useState,Button,useEffect} from 'react'
+import React,{useState,useEffect} from 'react'
 import {useDispatch,useSelector} from 'react-redux'
 import { useAlert } from 'react-alert'
 import {createCategory , clearErrors} from '../Actions/categoryActions'
@@ -27,7 +27,6 @@ useEffect(() => {
 
 const submitHandler = (e) => {
     e.preventDefault();
-
     dispatch(createCategory(name));
     
 }    

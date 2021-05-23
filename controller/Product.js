@@ -4,7 +4,7 @@ const Category = require('../models/Category');
 
 // Create new product 
 exports.createProduct = async (req,res,next) => { 
-    const category = await Category.findById(req.body.categoryID);
+    const category = await Category.findById(req.body.categoryId);
     
     req.body.CategoryName = category.CategoryName
     req.body.CategoryId = category.id

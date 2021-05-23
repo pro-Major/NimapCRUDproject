@@ -6,9 +6,52 @@ import {
     DELETE_PRODUCT_SUCCESS,
     DELETE_PRODUCT_FAIL,
     DELETE_PRODUCT_RESET,
+    CREATE_PRODUCT_REQUEST,
+    CREATE_PRODUCT_SUCCESS,
+    CREATE_PRODUCT_FAIL,
+    CREATE_PRODUCT_RESET,
     CLEAR_ERRORS
 } from '../Constants/productsConstant'
 
+
+export const newProductReducer = (state = { product: {} }, action) => {
+    switch (action.type) {
+
+        case CREATE_PRODUCT_REQUEST:
+            return {
+                ...state,
+                loading: true
+            }
+
+        case CREATE_PRODUCT_SUCCESS:
+            return {
+                loading: false,
+                success: action.payload.success,
+                product: action.payload.product
+            }
+
+        case CREATE_PRODUCT_FAIL:
+            return {
+                ...state,
+                error: action.payload
+            }
+
+        case CREATE_PRODUCT_RESET:
+            return {
+                ...state,
+                success: false
+            }
+
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null
+            }
+
+        default:
+            return state
+    }
+}
 
 
 export const productsReducer = (state = { products: [] }, action) => {
