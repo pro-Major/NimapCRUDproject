@@ -31,13 +31,18 @@ exports.getAllProducts = async (req,res) => {
 }
 
 exports.updateProduct = async (req, res) => {
-    let product = await Product.findById(req.params.id)
+    
+    let product = await Product.findById(req.params.id);
 
     if(!product) {
         res.status(404).json({
             message : 'Product not found'
         })
     }
+    const category = await Category.findById(req.body.categoryId);
+    
+    req.body.CategoryName = category.CategoryName
+    req.body.CategoryId = category.id
 
     product = await Product.findByIdAndUpdate(req.params.id, req.body, {
         new: true,

@@ -9,7 +9,10 @@ import {
     DELETE_PRODUCT_FAIL,
     CREATE_PRODUCT_REQUEST,
     CREATE_PRODUCT_SUCCESS,
-    CREATE_PRODUCT_FAIL   
+    CREATE_PRODUCT_FAIL,
+    UPDATE_PRODUCT_REQUEST,
+    UPDATE_PRODUCT_SUCCESS,
+    UPDATE_PRODUCT_FAIL
 
 
 
@@ -35,7 +38,26 @@ import {
 
     }
     }
+export const updateProduct = (id,ProductName,categoryId) =>  async (dispatch) => {
+    console.log(id,ProductName,categoryId)
+    try{
+        dispatch({ type : UPDATE_PRODUCT_REQUEST})
 
+        const { data } = await axios.put(`/product/${id}`,{ProductName,categoryId})
+
+        dispatch({
+             type : UPDATE_PRODUCT_SUCCESS,
+             payload : data
+        
+        })
+    }
+    catch(err){
+        dispatch({
+            type : UPDATE_PRODUCT_FAIL,
+        })
+
+    }
+}
     export const getProducts = () => async (dispatch) => {
         try {
     

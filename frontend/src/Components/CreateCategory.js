@@ -32,9 +32,10 @@ const submitHandler = (e) => {
 }    
     return (
         <div>
+            <h1> Create a new category</h1>
             <form  onSubmit={submitHandler}  >
                     <div className="form-group">
-                        <label htmlFor="text"> <h4> Category Name </h4></label>
+                        <label htmlFor="text"> <h5> Category Name </h5></label>
                         <input type="text" className="form-control" aria-describedby="emailHelp" placeholder="Enter Category Name" value={name} onChange={(e) => setName(e.target.value)}/>
                         <small id="text" className="form-text text-muted">Create a new Category</small>
                     </div>
