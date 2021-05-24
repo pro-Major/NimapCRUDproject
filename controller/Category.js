@@ -53,7 +53,7 @@ exports.getCategoryById = async (req, res, next) => {
     })
 }
 //Update A Category
-exports.updateCategory = async (req, res, next) => {
+exports.updateCategory = async (req, res) => {
     let category = await Category.findById(req.params.id);
 
     if(!category) {
@@ -61,11 +61,13 @@ exports.updateCategory = async (req, res, next) => {
             message : 'Category not found'
         })
     }
-    category = await Category.findByIdAndUpdate(req.params.id, req.body, {
+    const id = req.params.id
+    category = await Category.findByIdAndUpdate(id,{CategoryName : req.body.CategoryName} , {
         new: true,
         runValidators: true,
         useFindAndModify: false
     });
+
 
     res.status(200).json({
         success: true,

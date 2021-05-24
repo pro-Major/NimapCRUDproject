@@ -7,6 +7,7 @@ import UpdateProduct from './Components/UpdateProduct'
 import AllCategory from './Components/AllCategory'
 import CreateCategory from './Components/CreateCategory'
 import CreateProduct from './Components/CreateProduct'
+import UpdateCategory from './Components/UpdateCategory'
 function App() {
       return (
     <Router>
@@ -17,6 +18,7 @@ function App() {
       <Route path="/products/create" component={CreateProduct} exact />
       <Route path="/category/" component={AllCategory} exact />
       <Route path="/category/create" component={CreateCategory} exact />
+      <Route path="/category/update/:id" component={UpdateCategory} exact />
 
         </div>
     </Router> 

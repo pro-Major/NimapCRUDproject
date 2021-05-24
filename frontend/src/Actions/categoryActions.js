@@ -10,6 +10,9 @@ import {
     CREATE_CATEGORY_REQUEST,
     CREATE_CATEGORY_SUCCESS,
     CREATE_CATEGORY_FAIL,
+    UPDATE_CATEGORY_REQUEST,
+    UPDATE_CATEGORY_SUCCESS,
+    UPDATE_CATEGORY_FAIL,
     CLEAR_ERRORS
 
 } from '../Constants/categoryConstant'
@@ -53,6 +56,29 @@ export const createCategory = (CategoryName) => async (dispatch) => {
         })
         
     }
+}
+//Update a Category
+export const updateCategory = (id,CategoryName) => async (dispatch) => {
+    console.log(id, CategoryName);
+    try{
+
+        dispatch({
+            type : UPDATE_CATEGORY_REQUEST
+        })
+        const {data} = await axios.put(`/category/${id}`,{CategoryName})
+        
+        dispatch({
+            type : UPDATE_CATEGORY_SUCCESS,
+            payload : data
+        })
+
+    }
+    catch (error) {
+        dispatch({
+            type : UPDATE_CATEGORY_FAIL
+        })
+    }
+
 }
 
 //Delete A Category
