@@ -1,6 +1,6 @@
 const Product = require('../models/products');
 const Category = require('../models/Category');
-
+const PaginationFeature = require('../utils/Pagination')
 
 // Create new product 
 exports.createProduct = async (req,res,next) => { 
@@ -22,7 +22,15 @@ exports.createProduct = async (req,res,next) => {
 
 
 exports.getAllProducts = async (req,res) => {
+    // const resPerPage = 10;
+    // const productsCount = await Product.countDocuments();
+
+    // const apiFeatures = new PaginationFeature(Product.find(), req.query)
+
+    // apiFeatures.pagination(resPerPage)
+
     const products = await Product.find();
+    // products = await apiFeatures.query;
 
     res.status(200).json({
         success : true,
