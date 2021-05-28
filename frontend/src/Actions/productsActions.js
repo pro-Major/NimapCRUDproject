@@ -58,12 +58,12 @@ export const updateProduct = (id,ProductName,categoryId) =>  async (dispatch) =>
 
     }
 }
-    export const getProducts = () => async (dispatch) => {
+    export const getProducts = (currentPage=1) => async (dispatch) => {
         try {
     
             dispatch({ type: ALL_PRODUCTS_REQUEST })
     
-            const { data } = await axios.get(`/products`)
+            const { data } = await axios.get(`/products?page=${currentPage}`)
 
             dispatch({
                 type: ALL_PRODUCTS_SUCCESS,

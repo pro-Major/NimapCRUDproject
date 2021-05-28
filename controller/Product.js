@@ -32,29 +32,14 @@ exports.getAllProducts = async (req,res) => {
     products = await apiFeatures.query;
     // const products = await Product.find();
 
-    res.status(200).json({
+    res.status(200).json({ 
         success : true,
         resPerPage, 
         productsCount,
         products
     })
 }
-// exports.getAllProducts = async (req,res) => {
-//     let resPerPage = 10;
-//     let productsCount = await Product.countDocuments();
 
-//     const apiFeatures = new PaginationFeature(Product.find(), req.query)
-
-//     apiFeatures.pagination(resPerPage)
-
-//     const products = await Product.find();
-//     products = await apiFeatures.query;
-
-//     res.status(200).json({
-//         success : true,
-//         products
-//     })
-// }
 
 exports.updateProduct = async (req, res) => {
     

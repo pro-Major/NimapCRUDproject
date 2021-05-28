@@ -11,7 +11,7 @@ const CreateProduct = ({history}) => {
     const dispatch = useDispatch();
     const alert = useAlert();
 
-    const {category} = useSelector(state => state.category)
+    let {category} = useSelector(state => state.category)
     const {success} = useSelector(state => state.newProductReducer)
 
 useEffect(() => {
@@ -26,6 +26,9 @@ useEffect(() => {
 },[success])
 const submitHandler=(e) => {
     e.preventDefault();
+    if(!categoryname){
+        categoryname = category[0]
+    }
     dispatch(createProduct(name,categoryname));
 }
 

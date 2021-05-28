@@ -59,10 +59,10 @@ exports.updateCategory = async (req, res) => {
     if(!category) {
         res.status(404).json({
             message : 'Category not found'
-        })
+        }) 
     }
     const id = req.params.id
-    category = await Category.findByIdAndUpdate(id,{CategoryName : req.body.CategoryName} , {
+    category = await Category.findByIdAndUpdate(id,{CategoryName : req.body} , {
         new: true,
         runValidators: true,
         useFindAndModify: false
