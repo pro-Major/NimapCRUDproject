@@ -22,7 +22,7 @@ useEffect(() => {
     }
  
 
-},[categoryData,error])
+},[categoryData,error,alert,dispatch,history])
 
 
 const submitHandler = (e) => {

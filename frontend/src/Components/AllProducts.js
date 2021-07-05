@@ -21,7 +21,7 @@ const AllProducts = () => {
       alert.success("Product deleted successfully");
       dispatch({ type: DELETE_PRODUCT_RESET });
     }
-  }, [isDeleted, alert,currentPage]);
+  }, [isDeleted, alert,currentPage,dispatch]);
 
   const deleteProductHandler = (id) => {
     dispatch(deleteProduct(id));
@@ -52,7 +52,7 @@ let count = productsCount;
             </Link>
           </div>
 
-          <table class="table">
+          <table className="table">
             <thead>
               <tr>
                 <th scope="col">ProductId</th>
@@ -66,7 +66,7 @@ let count = productsCount;
             {
               <tbody>
                 {products.map((product) => (
-                  <tr key={product.id}>
+                  <tr key={product._id}>
                     <th scope="row"> {product._id}</th>
                     <td>{product.ProductName}</td>
                     <td>{product.CategoryName}</td>

@@ -21,7 +21,7 @@ useEffect(() => {
         alert.success('Category deleted successfully');
         dispatch({ type: DELETE_CATEGORY_RESET })
     }
-},[isDeleted]);
+},[isDeleted,alert,dispatch]);
 
 const deleteCategoryHandler = (id) => {
     dispatch(deleteCategory(id));
@@ -39,15 +39,12 @@ const deleteCategoryHandler = (id) => {
         <Link to={`/category/create`} className="btn btn-warning ml-2">Create Category</Link>
 </div>
 </div>
-<table class="table">
+<table className="table">
   <thead>
-    <tr>
-      
+    <tr>     
       <th scope="col">CategoryId</th>
       <th scope="col">CategoryName</th>
       <th scope="col">Actions</th>
-
-
     </tr>
   </thead>
 
@@ -55,7 +52,7 @@ const deleteCategoryHandler = (id) => {
 
  <tbody>
     {category.map(item => (
-        <tr key={item.id}> 
+        <tr key={item._id}> 
         <th scope="row"> {item._id}</th>
         <td>{item.CategoryName}</td>
          

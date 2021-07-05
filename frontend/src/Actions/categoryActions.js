@@ -38,7 +38,9 @@ export const getCategory = () => async (dispatch) => {
 }
 //Create a Category
 export const createCategory = (CategoryName) => async (dispatch) => {
+    
     try{
+        console.log(CategoryName);
         dispatch({type : CREATE_CATEGORY_REQUEST})
 
         const {data} = await axios.post(`/category/`,{CategoryName})
