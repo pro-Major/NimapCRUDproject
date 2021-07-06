@@ -41,8 +41,8 @@ return (
                     <input type="text" className="form-control" aria-describedby="emailHelp" placeholder="Enter Product Name" value={name} onChange={(e) => setName(e.target.value)}/>
                     <small id="text" className="form-text text-muted">Create a new Product</small>
                 </div>
-                <div class="form-group">
-                    <label for="exampleFormControlSelect1">Selected Product Category</label>
+                <div className="form-group">
+                    <label htmlFor="exampleFormControlSelect1">Selected Product Category</label>
                     <select className="custom-select mr-sm-2" value={categoryname} onChange={(e) => setCategoryname(e.target.value)}  >
                     {category.map(item => (
                         <option key={item._id}  value={item._id}> {item.CategoryName}</option>  

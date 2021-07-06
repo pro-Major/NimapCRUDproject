@@ -22,7 +22,7 @@ const AllProducts = ({history}) => {
       history.push('/')
       dispatch({ type: DELETE_PRODUCT_RESET });
     }
-  }, [isDeleted, alert,currentPage,dispatch]);
+  }, [isDeleted, alert,currentPage,dispatch,history]);
 
   const deleteProductHandler = (id) => {
     dispatch(deleteProduct(id));

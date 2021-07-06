@@ -13,6 +13,9 @@ const UpdateCategory = ({history,match}) => {
 
     const categoryId = match.params.id;
 
+useEffect(() => {
+    
+},[])
 
 const submitHandler = (e) => {
     e.preventDefault();
