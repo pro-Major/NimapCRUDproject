@@ -6,7 +6,7 @@ import { DELETE_PRODUCT_RESET } from "../Constants/productsConstant";
 import { useAlert } from "react-alert";
 import Pagination from 'react-js-pagination'
 
-const AllProducts = () => {
+const AllProducts = ({history}) => {
   const dispatch = useDispatch();
   const alert = useAlert();
   const [currentPage, setCurrentPage] = useState(1)
@@ -19,6 +19,7 @@ const AllProducts = () => {
 
     if (isDeleted) {
       alert.success("Product deleted successfully");
+      history.push('/')
       dispatch({ type: DELETE_PRODUCT_RESET });
     }
   }, [isDeleted, alert,currentPage,dispatch]);
