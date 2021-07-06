@@ -10,7 +10,11 @@ import {
     CREATE_CATEGORY_REQUEST,
     CREATE_CATEGORY_SUCCESS,
     CREATE_CATEGORY_FAIL,
-    CREATE_CATEGORY_RESET
+    CREATE_CATEGORY_RESET,
+    UPDATE_CATEGORY_REQUEST,
+    UPDATE_CATEGORY_SUCCESS,
+    UPDATE_CATEGORY_FAIL,
+    UPDATE_CATEGORY_RESET,
 } from '../Constants/categoryConstant'
 
 
@@ -90,25 +94,39 @@ export const createCategoryReducer = (state = {}, action) => {
 export const deleteCategoryReducer = (state = {},action) => {
     switch(action.type){
         case DELETE_CATEGORY_REQUEST:
+        case UPDATE_CATEGORY_REQUEST:
             return{
                 ...state,
                 loading: true
             }
+        case UPDATE_CATEGORY_SUCCESS:
+            return{
+                ...state,
+                loading: false,
+                isUpdated : true,
+            }
         case DELETE_CATEGORY_SUCCESS:
+        
             return{
                 ...state,
                 loading: false,
                 isDeleted: true
             }
         case DELETE_CATEGORY_FAIL:
+        case UPDATE_CATEGORY_FAIL:
             return {
                 ...state,
-                error: action.payload
+                error: action.payload,
+                isDeleted: false,
+                isUpdated: false
+
             }
         case DELETE_CATEGORY_RESET:
+        case UPDATE_CATEGORY_RESET:
                 return {
                     ...state,
-                    isDeleted: false
+                    isDeleted: false,
+                    isUpdated: false
             }
         case CLEAR_ERRORS:
                 return {

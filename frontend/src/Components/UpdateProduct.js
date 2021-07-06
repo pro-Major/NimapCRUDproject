@@ -9,7 +9,7 @@ const UpdateProduct = ({history,match,}) => {
 
 
     const [name, setName] = useState('') 
-    const [categoryname, setCategoryname] = useState('')
+    let [categoryname, setCategoryname] = useState('')
 
     const dispatch = useDispatch();
     const alert = useAlert();
@@ -31,6 +31,9 @@ useEffect(() => {
 
 const submitHandler=(e) => {
     e.preventDefault();
+    if(!categoryname){
+        categoryname = category[0]
+    }
     dispatch(updateProduct(productId,name,categoryname));
 }
 return (

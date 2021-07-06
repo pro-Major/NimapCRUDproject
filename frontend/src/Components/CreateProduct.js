@@ -6,7 +6,7 @@ import {useAlert} from 'react-alert'
 import {CREATE_PRODUCT_RESET} from '../Constants/productsConstant'
 const CreateProduct = ({history}) => {
     const [name, setName] = useState('') 
-    const [categoryname, setCategoryname] = useState('60aa34a90f979e2634e3dae2')
+    let [categoryname, setCategoryname] = useState('')
 
     const dispatch = useDispatch();
     const alert = useAlert();

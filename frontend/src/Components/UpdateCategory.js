@@ -1,25 +1,30 @@
 import React,{useState,useEffect} from 'react'
 import {useDispatch,useSelector} from 'react-redux'
 import { useAlert } from 'react-alert'
-import {updateCategory , clearErrors} from '../Actions/categoryActions'
+import {updateCategory} from '../Actions/categoryActions'
 
 import { UPDATE_CATEGORY_RESET} from '../Constants/categoryConstant'
 
 const UpdateCategory = ({history,match}) => {
     const [name, setName] = useState('') 
-
+    const {isUpdated} = useSelector(state => state.categoryDeleted)
     const dispatch = useDispatch();
     const alert = useAlert();
 
     const categoryId = match.params.id;
 
 useEffect(() => {
-    
-},[])
+    if(isUpdated){
+        alert.success('Category Updated Successfully');
+        history.push('/category')
+        dispatch({type : UPDATE_CATEGORY_RESET})
+    }
+},[isUpdated,history,alert,dispatch]);
 
 const submitHandler = (e) => {
     e.preventDefault();
     dispatch(updateCategory(categoryId,name));
+
     
 }        
 
