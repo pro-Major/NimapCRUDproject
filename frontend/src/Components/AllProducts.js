@@ -1,38 +1,42 @@
-import React, { Fragment,useState, useEffect } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { getProducts, deleteProduct } from "../Actions/productsActions";
+
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { DELETE_PRODUCT_RESET } from "../Constants/productsConstant";
 import { useAlert } from "react-alert";
-import Pagination from 'react-js-pagination'
+import Pagination from "react-js-pagination";
 
-const AllProducts = ({history}) => {
+const AllProducts = ({ history }) => {
   const dispatch = useDispatch();
   const alert = useAlert();
-  const [currentPage, setCurrentPage] = useState(1)
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const { products ,resPerPage , productsCount } = useSelector((state) => state.products);
+  const { products, resPerPage, productsCount } = useSelector(
+    (state) => state.products
+  );
   const { isDeleted } = useSelector((state) => state.productDeleted);
 
   useEffect(() => {
+
     dispatch(getProducts(currentPage));
 
     if (isDeleted) {
       alert.success("Product deleted successfully");
-      history.push('/')
+      history.push("/");
       dispatch({ type: DELETE_PRODUCT_RESET });
     }
-  }, [isDeleted, alert,currentPage,dispatch,history]);
+  }, [isDeleted, alert, currentPage, dispatch, history]);
 
   const deleteProductHandler = (id) => {
     dispatch(deleteProduct(id));
   };
-  
-  function setCurrentPageNo(pageNumber) {
-    setCurrentPage(pageNumber)
-}
 
-let count = productsCount;
+  function setCurrentPageNo(pageNumber) {
+    setCurrentPage(pageNumber);
+  }
+
+  let count = productsCount;
 
   return (
     <Fragment>
@@ -70,8 +74,8 @@ let count = productsCount;
                   <tr key={product._id}>
                     <th scope="row"> {product._id}</th>
                     <td>{product.ProductName}</td>
-                    <td>{product.CategoryName}</td>
-                    <td>{product.CategoryId}</td>
+                    <td>{product.CategoryId.CategoryName}</td>
+                    <td>{product.CategoryId._id}</td>
                     <td>
                       <Fragment>
                         <Link

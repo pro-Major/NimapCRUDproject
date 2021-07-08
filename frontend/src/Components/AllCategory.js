@@ -8,7 +8,7 @@ const AllCategory = () => {
     const dispatch = useDispatch();
     const alert = useAlert();
 
-    const {category} = useSelector(state => state.category)
+    const {category} = useSelector(state => state.category);
     const { isDeleted } = useSelector(state => state.categoryDeleted);
 
 
